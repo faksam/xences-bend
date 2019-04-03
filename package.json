@@ -1,0 +1,41 @@
+{
+  "name": "xences-bend",
+  "version": "1.0.0",
+  "description": "server/api endpoint for the xences app",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
+    "tsc": "tsc",
+    "build": "npm-run-all clean lint tsc",
+    "dev:start": "npm-run-all build start",
+    "dev": "nodemon --watch src -e ts --exec npm run dev:start",
+    "start": "node ./dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faksam/xences-bend.git"
+  },
+  "author": "Samuel Fakunle (FakSam)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/faksam/xences-bend/issues"
+  },
+  "homepage": "https://github.com/faksam/xences-bend#readme",
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10",
+    "ts-node": "^8.0.3"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.16.1",
+    "@types/node": "^11.13.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^2.6.3",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.1"
+  }
+}
