@@ -4,14 +4,25 @@
   "description": "server/api endpoint for the xences app",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist/*",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
-    "tsc": "tsc",
-    "build": "npm-run-all clean lint tsc",
-    "dev:start": "npm-run-all build start",
-    "dev": "nodemon --watch src -e ts --exec npm run dev:start",
+    "webpack": "webpack",
+    "build": "npm-run-all lint webpack",
     "start": "node ./dist/index.js",
+    "start:dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm-run-all webpack start",
+    "ext": "ts"
   },
   "repository": {
     "type": "git",
@@ -27,7 +38,7 @@
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "nodemon": "^1.18.10",
-    "ts-node": "^8.0.3"
+    "ts-loader": "^5.3.3"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
@@ -36,6 +47,10 @@
     "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.3",
     "tslint": "^5.15.0",
-    "typescript": "^3.4.1"
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.4.1",
+    "webpack-node-externals": "^1.7.2",
+    "webpack-shell-plugin": "^0.5.0"
   }
 }
