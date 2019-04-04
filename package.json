@@ -40,7 +40,9 @@
     "express": "^4.16.4",
     "jest": "^24.7.0",
     "nodemon": "^1.18.10",
-    "ts-loader": "^5.3.3"
+    "ts-loader": "^5.3.3",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
