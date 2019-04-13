@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
-import { DbInterface } from'../typings/DbInterface';
-import { UserFactory } from './User';
 import { ConfigEnv } from '../config/interface';
+import { DbInterface } from '../typings/DbInterface';
+import { UserFactory } from './User';
 
 export const createModels = (sequelizeConfig: ConfigEnv): DbInterface => {
   const { database, username, password, params } = sequelizeConfig;
@@ -10,7 +10,7 @@ export const createModels = (sequelizeConfig: ConfigEnv): DbInterface => {
   const db: DbInterface = {
     sequelize,
     Sequelize,
-    User: UserFactory(sequelize, Sequelize)
+    User: UserFactory(sequelize, Sequelize),
   };
 
   return db;
