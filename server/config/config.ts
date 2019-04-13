@@ -11,8 +11,8 @@ const config: ConfigEnv = {
   params: {
     host: process.env.DB_HOST,
     dialect: 'postgres',
-    operatorsAliases: false
-  }
+    operatorsAliases: false,
+  },
 };
 
 export default config;

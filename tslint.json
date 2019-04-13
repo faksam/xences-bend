@@ -62,7 +62,6 @@
       "timeEnd",
       "trace"
     ],
-    "no-unused-variable": true,
     "no-consecutive-blank-lines": true,
     "no-construct": true,
     "no-debugger": true,
