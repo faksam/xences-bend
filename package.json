@@ -4,7 +4,7 @@
   "description": "server/api endpoint for the xences app",
   "main": "index.js",
   "scripts": {
-    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
     "webpack": "webpack",
     "build": "npm-run-all lint webpack",
     "start": "node ./dist/index.js",
@@ -44,8 +44,7 @@
     "sequelize-cli": "^5.4.0",
     "ts-loader": "^5.3.3",
     "ts-node": "^8.0.3",
-    "tslint": "^5.11.0",
-    "typescript": "^3.0.1",
+    "typescript": "^3.4.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },
@@ -63,7 +62,6 @@
     "tslint": "^5.15.0",
     "tslint-config-airbnb": "^5.11.1",
     "tslint-eslint-rules": "^5.4.0",
-    "typescript": "^3.4.1",
     "webpack-node-externals": "^1.7.2",
     "webpack-shell-plugin": "^0.5.0"
   }
