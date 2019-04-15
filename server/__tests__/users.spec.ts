@@ -3,16 +3,29 @@ import app from '../app';
 
 describe('Test the root path', () => {
   test('Get a none existing user', async () => {
-    const response = await request(app).get('/users/1');
+    const response = await request(app).get('/users/50');
     expect(response.status).toBe(404);
   });
 
   test('Create a new user', async () => {
     const response = await request(app).post('/users')
     .send({
-      name: 'Samuel Fakunle'
+      fullname: 'Samuel Fakunle',
+      email: 'fakunlesamuel2@gmail.com',
+      password: 'LifeIsARace',
+      password_confirmation: 'LifeIsARace',
     });
     expect(response.status).toBe(201);
+  });
+
+  test('Search for a user by email', async () => {
+    const response = await request(app).get('/users/search?email=fakunlesamuel2@gmail.com');
+    expect(response.status).toBe(200);
+  });
+
+  test('Search for a none existing user by email', async () => {
+    const response = await request(app).get('/users/search?email=fakunlesamJohn@gmail.com');
+    expect(response.status).toBe(400);
   });
 
   test('Get all users', async () => {
@@ -28,7 +41,7 @@ describe('Test the root path', () => {
   test('Edit a specific user', async () => {
     const response = await request(app).put('/users/1')
     .send({
-      name: 'Samuel Mayowa Fakunle'
+      fullname: 'Samuel Mayowa Fakunle'
     });
     expect(response.status).toBe(200);
   });
