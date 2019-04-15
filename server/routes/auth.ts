@@ -1,7 +1,7 @@
 import AuthController from '../controllers/auth';
+import UserInputValidation from '../helpers/authValidation';
 import verifyEmail from '../helpers/verifyEmail';
 import verifyUserEmail from '../helpers/verifyUserEmail';
-import UserInputValidation from '../helpers/authValidation';
 
 export default (app: any) => {
   app.post('/auth/signup', UserInputValidation.signUpInputValidation, verifyEmail, AuthController.signup);

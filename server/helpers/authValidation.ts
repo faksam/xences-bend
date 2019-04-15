@@ -1,6 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import Validator from 'validatorjs';
-
 
 /**
  * @class UserInputValidation
@@ -16,29 +15,29 @@ class UserInputValidation {
    */
   static signInInputValidation(req: Request, res: Response, next: NextFunction) {
     const {
-      email, password
+      email, password,
     } = req.body;
 
     const validation = new Validator(
       {
         email,
-        password
+        password,
       },
       {
         email: 'required|string|email',
         password: 'required|min:8|max:40',
-      },
+      }
     );
 
     if (validation.passes()) {
       return next();
     }
-    else  {
+    {
       const errors = validation.errors.all();
       return res.status(400).send({
         success: false,
         status: 400,
-        errors,
+        error: errors,
       });
     }
   }
@@ -53,7 +52,7 @@ class UserInputValidation {
    */
   static signUpInputValidation(req: Request, res: Response, next: NextFunction) {
     const {
-      fullname, email, password, password_confirmation, phone, address, role 
+      fullname, email, password, password_confirmation, phone, address, role,
     } = req.body;
 
     const validation = new Validator(
@@ -74,18 +73,18 @@ class UserInputValidation {
         phone: 'string|max:40',
         address: 'string|max:80',
         role: 'string|max:40',
-      },
+      }
     );
 
     if (validation.passes()) {
       return next();
     }
-    else  {
+    {
       const errors = validation.errors.all();
       return res.status(400).send({
         success: false,
         status: 400,
-        errors,
+        error: errors,
       });
     }
   }

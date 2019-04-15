@@ -1,14 +1,14 @@
 import request from 'supertest';
 import app from '../app';
 
-describe('Test the root path', () => {
-  test('Signup a new user with empty fields', async () => {
+describe('Test Authentication', () => {
+  it('Signup a new user with empty fields', async () => {
     const response = await request(app).post('/auth/signup')
     .send({ });
     expect(response.status).toBe(400);
   });
 
-  test('Signup a new user with valid fields', async () => {
+  it('Signup a new user with valid fields', async () => {
     const response = await request(app).post('/auth/signup')
     .send({
       fullname: 'Samuel Fakunle',
@@ -19,7 +19,7 @@ describe('Test the root path', () => {
     expect(response.status).toBe(201);
   });
 
-  test('Signup a new user with existing email/data', async () => {
+  it('Signup a new user with existing email/data', async () => {
     const response = await request(app).post('/auth/signup')
     .send({
       fullname: 'Samuel Fakunle',
@@ -30,13 +30,13 @@ describe('Test the root path', () => {
     expect(response.status).toBe(409);
   });
 
-  test('Login a user with empty fields', async () => {
+  it('Login a user with empty fields', async () => {
     const response = await request(app).post('/auth/login')
     .send({});
     expect(response.status).toBe(400);
   });
 
-  test('Login a user with valid fields', async () => {
+  it('Login a user with valid fields', async () => {
     const response = await request(app).post('/auth/login')
     .send({
       email: 'fakunlesamuel@gmail.com',
@@ -45,7 +45,7 @@ describe('Test the root path', () => {
     expect(response.status).toBe(200);
   });
 
-  test('Login a user with invalid fields', async () => {
+  it('Login a user with invalid fields', async () => {
     const response = await request(app).post('/auth/login')
     .send({
       email: 'fakunlesamuel@gmail.com',

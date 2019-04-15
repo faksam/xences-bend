@@ -1,13 +1,13 @@
 import request from 'supertest';
 import app from '../app';
 
-describe('Test the root path', () => {
-  test('Get a none existing user', async () => {
+describe('Test Users', () => {
+  it('Get a none existing user', async () => {
     const response = await request(app).get('/users/50');
     expect(response.status).toBe(404);
   });
 
-  test('Create a new user', async () => {
+  it('Create a new user', async () => {
     const response = await request(app).post('/users')
     .send({
       fullname: 'Samuel Fakunle',
@@ -18,40 +18,40 @@ describe('Test the root path', () => {
     expect(response.status).toBe(201);
   });
 
-  test('Search for a user by email', async () => {
+  it('Search for a user by email', async () => {
     const response = await request(app).get('/users/search?email=fakunlesamuel2@gmail.com');
     expect(response.status).toBe(200);
   });
 
-  test('Search for a none existing user by email', async () => {
+  it('Search for a none existing user by email', async () => {
     const response = await request(app).get('/users/search?email=fakunlesamJohn@gmail.com');
     expect(response.status).toBe(400);
   });
 
-  test('Get all users', async () => {
+  it('Get all users', async () => {
     const response = await request(app).get('/users');
     expect(response.status).toBe(200);
   });
 
-  test('Get a specific user', async () => {
+  it('Get a specific user', async () => {
     const response = await request(app).get('/users/1');
     expect(response.status).toBe(200);
   });
 
-  test('Edit a specific user', async () => {
+  it('Edit a specific user', async () => {
     const response = await request(app).put('/users/1')
     .send({
-      fullname: 'Samuel Mayowa Fakunle'
+      fullname: 'Samuel Mayowa Fakunle',
     });
     expect(response.status).toBe(200);
   });
 
-  test('Count all users', async () => {
+  it('Count all users', async () => {
     const response = await request(app).get('/users/count');
     expect(response.status).toBe(200);
   });
 
-  test('Delete a specific user', async () => {
+  it('Delete a specific user', async () => {
     const response = await request(app).delete('/users/1');
     expect(response.status).toBe(200);
   });
