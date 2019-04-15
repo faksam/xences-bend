@@ -1,23 +1,23 @@
-import jwt from 'jwt-simple';
 import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
+import jwt from 'jwt-simple';
 import sequelizeConfig from '../config/config';
 import { createModels } from '../models';
-
+import { UserInstance } from '../models/User';
 
 /**
-   * @description - Create Token
-   * @static
-   *
-   * @param {object} user - User Object
-   *
-   * @returns {object} Encoded token
-   */
-const tokenForUser = (user: any) => {
+ * @description - Create Token
+ * @static
+ *
+ * @param {object} user - User Object
+ *
+ * @returns {object} Encoded token
+ */
+const tokenForUser = (user: UserInstance) => {
   const timestamp = new Date().getTime();
   return jwt.encode({
     email: user.email, role: user.role, id: user.id, iat: timestamp,
-  }, process.env.SECRET_TOKEN);
+  },                process.env.SECRET_TOKEN);
 };
 
 const User = createModels(sequelizeConfig).User;
@@ -43,13 +43,14 @@ const signup = (req: Request, res: Response) => {
 
   bcrypt.hash(password, saltRounds)
     .then((hash) => {
-      const newUser: any = Object.assign({}, req.body, {
+      const newUser: UserInstance = {
+        ...req.body,
         email: email.toLowerCase(),
         password: hash,
-      });
+      };
 
       User.create(newUser)
-        .then((user: any) => {
+        .then((user: UserInstance) => {
           userToken = tokenForUser(user);
           res.set('authorization', userToken).status(201).send({
             success: true,
@@ -81,10 +82,10 @@ const login = (req: Request, res: Response) => {
   const userEmail = email.toLowerCase();
   User.findOne({
     where: {
-      email: userEmail
-    }
+      email: userEmail,
+    },
   })
-    .then((user) => {
+    .then((user: UserInstance) => {
       if (user && user.password) {
         bcrypt.compare(password, user.password)
           .then((validPassword) => {
@@ -100,19 +101,18 @@ const login = (req: Request, res: Response) => {
                   role: user.role,
                 },
               });
-            }
-            else {
+            } else {
               res.status(400).send({
                 success: false,
                 status: 400,
                 error: {
                   message: 'Invalid Email or Password.',
-                }
+                },
               });
             }
           });
       }
     });
-  }
+};
 
-  export default { signup, login };
+export default { signup, login };
