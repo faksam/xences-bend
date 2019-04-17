@@ -16,7 +16,7 @@ import { UserInstance } from '../models/User';
 const tokenForUser = (user: UserInstance) => {
   const timestamp = new Date().getTime();
   return jwt.encode({
-    email: user.email, role: user.role, id: user.id, iat: timestamp,
+    email: user.email, role: user.roleId, id: user.id, iat: timestamp,
   },                process.env.SECRET_TOKEN);
 };
 
@@ -59,7 +59,7 @@ const signup = (req: Request, res: Response) => {
             data: {
               fullName: user.fullname,
               email: user.email,
-              role: user.role,
+              role: user.roleId,
             },
           });
         });
@@ -98,7 +98,7 @@ const login = (req: Request, res: Response) => {
                 data: {
                   fullName: user.fullname,
                   email: user.email,
-                  role: user.role,
+                  role: user.roleId,
                 },
               });
             } else {
