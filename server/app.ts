@@ -1,7 +1,5 @@
 import express from 'express';
 
-import sequelizeConfig from './config/config';
-import { createModels } from './models';
 import routes from './routes';
 
 const app = express();

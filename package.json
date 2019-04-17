@@ -2,10 +2,10 @@
   "name": "xences-bend",
   "version": "1.0.0",
   "description": "server/api endpoint for the xences app",
-  "main": "index.js",
   "scripts": {
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "webpack": "webpack",
+    "prebuild": "npm run createDB",
     "build": "npm-run-all lint webpack",
     "start": "node ./dist/index.js",
     "start:dev": "nodemon",
