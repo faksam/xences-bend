@@ -5,6 +5,7 @@ import { AttributeFactory } from './Attribute';
 import { AttributeValueFactory } from './AttributeValue';
 import { BrandFactory } from './Brand';
 import { CategoryFactory } from './Category';
+import { FaceMaskFactory } from './FaceMask';
 import { OrderFactory } from './Order';
 import { OrderDetailFactory } from './OrderDetail';
 import { ProductFactory } from './Product';
@@ -26,6 +27,7 @@ export const createModels = (sequelizeConfig: ConfigEnv): DbInterface => {
     Attribute: AttributeFactory(sequelize, Sequelize),
     AttributeValue: AttributeValueFactory(sequelize, Sequelize),
     Brand: BrandFactory(sequelize, Sequelize),
+    FaceMask: FaceMaskFactory(sequelize, Sequelize),
     Category: CategoryFactory(sequelize, Sequelize),
     Order: OrderFactory(sequelize, Sequelize),
     OrderDetail: OrderDetailFactory(sequelize, Sequelize),

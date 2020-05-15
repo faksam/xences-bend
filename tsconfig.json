@@ -16,6 +16,7 @@
           ]
       }
   },
+  "exclude": ["server/__tests__"],
   "include": [
       "server/**/*"
   ]
